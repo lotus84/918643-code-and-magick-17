@@ -58,8 +58,11 @@ window.renderStatistics = function (ctx, names, times) {
     if (names[i] === 'Вы') {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
     }
-    ctx.fillRect(CLOUD_X + PADDING + (BAR_WIDTH + BAR_GAP) * i, (CLOUD_Y + SHIFT) * 3 + GAP + BAR_HEIGHT, BAR_WIDTH, -Math.floor(((BAR_HEIGHT * times[i]) / maxTime)));
-    renderText(ctx, CLOUD_X + PADDING + (BAR_WIDTH + BAR_GAP) * i, (CLOUD_Y + SHIFT) * 3 + SHIFT + BAR_HEIGHT, names[i]);
-    renderText(ctx, CLOUD_X + PADDING + (BAR_WIDTH + BAR_GAP) * i, ((CLOUD_Y + SHIFT) * 3 + SHIFT + BAR_HEIGHT) - Math.floor(((BAR_HEIGHT * times[i])) / maxTime) - SHIFT - GAP, Math.floor(times[i]));
+    var BAR_X = CLOUD_X + PADDING + (BAR_WIDTH + BAR_GAP) * i;
+    var BAR_Y = (CLOUD_Y + SHIFT) * 3 + GAP + BAR_HEIGHT;
+    var TEXT_Y = (CLOUD_Y + SHIFT) * 3 + SHIFT + BAR_HEIGHT;
+    ctx.fillRect(BAR_X, BAR_Y, BAR_WIDTH, -Math.floor(((BAR_HEIGHT * times[i]) / maxTime)));
+    renderText(ctx, BAR_X, TEXT_Y, names[i]);
+    renderText(ctx, BAR_X, TEXT_Y - Math.floor(((BAR_HEIGHT * times[i])) / maxTime) - SHIFT - GAP, Math.floor(times[i]));
   }
 };
