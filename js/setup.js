@@ -62,3 +62,15 @@ var renderWizard = function (wizard) {
 
   return wizardElement;
 };
+
+var createFragment = function (wizards) {
+  var fragment = document.createDocumentFragment();
+
+  for (var i = 0; i < wizards.length; i++) {
+    fragment.appendChild(renderWizard(wizards[i]));
+  }
+
+  return similarListElement.appendChild(fragment);
+};
+
+createFragment(wizardsList);
