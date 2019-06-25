@@ -2,6 +2,11 @@
 
 var ESC_KEYCODE = 27;
 var ENTER_KEYCODE = 13;
+var NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
+var SURNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
+var COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
+var EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
+var WIZARDS_COUNT = 4;
 var setup = document.querySelector('.setup');
 var setupOpen = document.querySelector('.setup-open');
 var setupClose = setup.querySelector('.setup-close');
@@ -42,12 +47,6 @@ setupClose.addEventListener('keydown', function (evt) {
     closePopup();
   }
 });
-
-var NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
-var SURNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
-var COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
-var EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
-var WIZARDS_COUNT = 4;
 
 var getRandomNumber = function (arr) {
   var randomNumber = Math.floor(Math.random() * 10);
@@ -104,3 +103,37 @@ var createFragment = function (wizards) {
 };
 
 createFragment(wizardsList);
+
+var wizardItem = setup.querySelector('.setup-wizard');
+var wizardCoat = wizardItem.querySelector('.wizard-coat');
+var wizardCoatInput = setup.querySelector('input[name="coat-color"]');
+var wizardEyes = wizardItem.querySelector('.wizard-eyes');
+var wizardEyesInput = setup.querySelector('input[name="eyes-color"]');
+
+var arrayIndex = 0;
+var getArrayIndex = function (arr) {
+  if (arrayIndex >= arr.length) {
+    arrayIndex = 0;
+  } else {
+    arrayIndex = arrayIndex + 1;
+  }
+  return arrayIndex;
+};
+
+var changeCoatColor = function (index) {
+  wizardCoat.style.fill = COAT_COLORS[index];
+  wizardCoatInput.setAttribute('value', COAT_COLORS[index]);
+};
+
+wizardCoat.addEventListener('click', function () {
+  changeCoatColor(getArrayIndex(COAT_COLORS));
+});
+
+var changeEyesColor = function (index) {
+  wizardEyes.style.fill = EYES_COLORS[index];
+  wizardEyesInput.setAttribute('value', EYES_COLORS[index])
+};
+
+wizardEyes.addEventListener('click', function () {
+  changeEyesColor(getArrayIndex(EYES_COLORS));
+});
