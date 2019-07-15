@@ -59,6 +59,17 @@
     }
   });
 
+  var form = window.util.setup.querySelector('.setup-wizard-form');
+
+  var onSuccessLoad = function () {
+    closePopup();
+  };
+
+  form.addEventListener('submit', function (evt) {
+    window.backend.save(new FormData(form), onSuccessLoad, window.util.onErrorLoad);
+    evt.preventDefault();
+  });
+
   var dialogHandle = window.util.setup.querySelector('.upload');
 
   dialogHandle.addEventListener('mousedown', function (evt) {
