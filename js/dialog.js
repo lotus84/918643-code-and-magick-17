@@ -66,8 +66,8 @@
   };
 
   form.addEventListener('submit', function (evt) {
-    window.backend.save(new FormData(form), onSuccessLoad, window.util.onErrorLoad);
     evt.preventDefault();
+    window.backend.save(new FormData(form), onSuccessLoad, window.util.onErrorLoad);
   });
 
   var dialogHandle = window.util.setup.querySelector('.upload');
